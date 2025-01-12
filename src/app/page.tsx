@@ -1,101 +1,146 @@
-import Image from "next/image";
+"use client";
 
-export default function Home() {
+import React, { useState, useEffect } from 'react';
+import Link from 'next/link'; // Импортируем компонент Link
+import Header from '../components/Header'; // Импортируем компонент Header
+import Footer from '../components/Footer'; // Импортируем компонент Footer
+import { Carousel, CarouselPrevious, CarouselContent, CarouselItem, CarouselNext } from '../components/ui/carousel'; // Импортируем компоненты Carousel
+import Image from 'next/image'; // Импортируем компонент Image
+import { Button } from '../components/ui/button'; // Импортируем компонент Button
+import SideButtons from '../components/ui/SiteButtons'; // Импортируем компонент SideButtons
+
+const Page = () => {
+  const [isExpanded, setIsExpanded] = useState(false);
+  const [isDarkMode, setIsDarkMode] = useState(false);
+
+  useEffect(() => {
+    const savedTheme = localStorage.getItem('theme');
+    if (savedTheme === 'dark') {
+      setIsDarkMode(true);
+      document.documentElement.classList.add('dark');
+    } else {
+      setIsDarkMode(false);
+      document.documentElement.classList.remove('dark');
+    }
+  }, []);
+
+  const toggleText = () => {
+    setIsExpanded(!isExpanded);
+  };
+
+  const toggleLanguage = () => {
+    // Логика переключения языка
+  };
+
+  const toggleRecipes = () => {
+    // Логика переключения рецептов
+  };
+
+  const toggleTheme = () => {
+    const newTheme = !isDarkMode;
+    setIsDarkMode(newTheme);
+    if (newTheme) {
+      document.documentElement.classList.add('dark');
+      localStorage.setItem('theme', 'dark');
+    } else {
+      document.documentElement.classList.remove('dark');
+      localStorage.setItem('theme', 'light');
+    }
+  };
+
+  const buttons = {
+    home: 'Home',
+    blog: 'Blog',
+    language: 'Language',
+    myRecipes: 'My Recipes',
+    lightMode: 'Light Mode',
+    darkMode: 'Dark Mode',
+  };
+
+  const pages = [
+    { image: '/00029.jpg', title: 'Image 1' },
+    { image: '/00030.jpg', title: 'Image 2' },
+    { image: '/00031.jpg', title: 'Image 3' },
+    // Добавьте остальные страницы
+  ];
+
   return (
-    <div className="grid grid-rows-[20px_1fr_20px] items-center justify-items-center min-h-screen p-8 pb-20 gap-16 sm:p-20 font-[family-name:var(--font-geist-sans)]">
-      <main className="flex flex-col gap-8 row-start-2 items-center sm:items-start">
-        <Image
-          className="dark:invert"
-          src="/next.svg"
-          alt="Next.js logo"
-          width={180}
-          height={38}
-          priority
-        />
-        <ol className="list-inside list-decimal text-sm text-center sm:text-left font-[family-name:var(--font-geist-mono)]">
-          <li className="mb-2">
-            Get started by editing{" "}
-            <code className="bg-black/[.05] dark:bg-white/[.06] px-1 py-0.5 rounded font-semibold">
-              src/app/page.tsx
-            </code>
-            .
-          </li>
-          <li>Save and see your changes instantly.</li>
-        </ol>
-
-        <div className="flex gap-4 items-center flex-col sm:flex-row">
-          <a
-            className="rounded-full border border-solid border-transparent transition-colors flex items-center justify-center bg-foreground text-background gap-2 hover:bg-[#383838] dark:hover:bg-[#ccc] text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5"
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <Image
-              className="dark:invert"
-              src="/vercel.svg"
-              alt="Vercel logomark"
-              width={20}
-              height={20}
-            />
-            Deploy now
-          </a>
-          <a
-            className="rounded-full border border-solid border-black/[.08] dark:border-white/[.145] transition-colors flex items-center justify-center hover:bg-[#f2f2f2] dark:hover:bg-[#1a1a1a] hover:border-transparent text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5 sm:min-w-44"
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Read our docs
-          </a>
+    <div className="bg-cover bg-center min-h-screen flex flex-col dark:bg-black dark:text-white">
+      <Header
+        title="Sushi Master"
+        buttons={buttons}
+        toggleLanguage={toggleLanguage}
+        toggleRecipes={toggleRecipes}
+        toggleTheme={toggleTheme}
+        isDarkMode={isDarkMode}
+      />
+      <SideButtons
+        buttons={buttons}
+        toggleLanguage={toggleLanguage}
+        toggleRecipes={toggleRecipes}
+        toggleTheme={toggleTheme}
+        isDarkMode={isDarkMode}
+      />
+      {/* Ваш контент */}
+      <div className="flex flex-col items-center flex-grow px-4 sm:px-6 lg:px-8">
+        <main className='flex flex-col md:flex-row items-center justify-center w-full max-w-6xl py-12 sm:py-24'>
+          <div className='flex-1 text-center md:text-left'>
+            <div className='max-w-md'>
+              <h1 className='text-3xl sm:text-4xl md:text-5xl font-semibold leading-tight'>
+                <span>Sushi Master Dima Fomin</span>
+              </h1>
+              <div className={`text-gray-500 text-lg mt-2 transition-opacity duration-300 ${isExpanded ? 'max-h-full' : 'max-h-20 overflow-hidden'}`}>
+                <p className='block whitespace-pre-line'>About myself: I have been professionally involved in products for 20 years now, I have worked in different countries, I have seen many technologies on how to work and create new products.</p>
+              </div>
+              <Button
+                onClick={toggleText}
+                className="mt-4 px-4 py-2 rounded-full shadow-lg transition-all duration-300 text-sm font-semibold tracking-wide bg-gray-800 text-white hover:bg-gray-900"
+              >
+                {isExpanded ? 'Close' : 'Read More'}
+              </Button>
+            </div>
+          </div>
+          <div className='flex-1 mt-10 md:mt-0 relative'>
+            <Carousel>
+              <CarouselPrevious className="absolute left-4 top-1/2 transform -translate-y-1/2 z-10" />
+              <CarouselContent>
+                {pages.map((page, index) => (
+                  <CarouselItem key={index}>
+                    <Image
+                      src={page.image}
+                      alt={page.title}
+                      width={400}
+                      height={400}
+                      className="rounded-lg object-cover"
+                      priority
+                    />
+                  </CarouselItem>
+                ))}
+              </CarouselContent>
+              <CarouselNext className="absolute right-4 top-1/2 transform -translate-y-1/2 z-10 md:right-36" />
+            </Carousel>
+          </div>
+        </main>
+        <div className="flex space-x-4 mt-8">
+          <Link href="/" className="px-4 py-2 rounded-full shadow-lg transition-all duration-300 text-sm font-semibold tracking-wide"
+            style={{ backgroundColor: 'var(--button-bg)', color: 'var(--button-text)', textTransform: 'uppercase', opacity: 0.7 }}>
+            Page 1
+          </Link>
+          <Link href="/page2" className="px-4 py-2 rounded-full shadow-lg transition-all duration-300 text-sm font-semibold tracking-wide"
+            style={{ backgroundColor: 'var(--button-bg)', color: 'var(--button-text)', textTransform: 'uppercase', opacity: 0.7 }}>
+            Page 2
+          </Link>
+          <Link href="/page3" className="px-4 py-2 rounded-full shadow-lg transition-all duration-300 text-sm font-semibold tracking-wide"
+            style={{ backgroundColor: 'var(--button-bg)', color: 'var(--button-text)', textTransform: 'uppercase', opacity: 0.7 }}>
+            Page 3
+          </Link>
         </div>
-      </main>
-      <footer className="row-start-3 flex gap-6 flex-wrap items-center justify-center">
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/file.svg"
-            alt="File icon"
-            width={16}
-            height={16}
-          />
-          Learn
-        </a>
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/window.svg"
-            alt="Window icon"
-            width={16}
-            height={16}
-          />
-          Examples
-        </a>
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://nextjs.org?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/globe.svg"
-            alt="Globe icon"
-            width={16}
-            height={16}
-          />
-          Go to nextjs.org →
-        </a>
-      </footer>
+      </div>
+      <div className="mt-auto w-full">
+        <Footer />
+      </div>
     </div>
   );
-}
+};
+
+export default Page;
