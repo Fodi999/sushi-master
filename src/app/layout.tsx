@@ -1,6 +1,7 @@
 "use client";
 
 import { Geist, Geist_Mono } from "next/font/google";
+import { SpeedInsights } from "@vercel/speed-insights/next"; // Импортируем SpeedInsights
 import "./globals.css";
 import { useEffect } from "react";
 
@@ -20,11 +21,11 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   useEffect(() => {
-    const isDarkMode = localStorage.getItem('theme') === 'dark';
+    const isDarkMode = localStorage.getItem("theme") === "dark";
     if (isDarkMode) {
-      document.documentElement.classList.add('dark');
+      document.documentElement.classList.add("dark");
     } else {
-      document.documentElement.classList.remove('dark');
+      document.documentElement.classList.remove("dark");
     }
   }, []);
 
@@ -34,7 +35,9 @@ export default function RootLayout({
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
       >
         {children}
+        <SpeedInsights /> {/* Добавляем компонент SpeedInsights */}
       </body>
     </html>
   );
 }
+
