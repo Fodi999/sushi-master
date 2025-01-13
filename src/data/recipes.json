@@ -1,0 +1,74 @@
+[
+    {
+      "id": 1,
+      "title": "Recipe 1",
+      "description": "This is a description of Recipe 1.",
+      "date": "2023-10-01",
+      "image": "/000012.jpg",
+      "correctOtp": "123456",
+      "content": [
+        "Step 1: Prepare the ingredients.",
+        "Step 2: Mix the ingredients together.",
+        "Step 3: Cook the mixture over medium heat.",
+        "Step 4: Serve and enjoy your meal!"
+      ]
+    },
+    {
+      "id": 2,
+      "title": "Recipe 2",
+      "description": "This is a description of Recipe 2.",
+      "date": "2023-10-02",
+      "image": "/000012.jpg",
+      "correctOtp": "654321",
+      "content": [
+        "Step 1: Prepare the ingredients.",
+        "Step 2: Mix the ingredients together.",
+        "Step 3: Cook the mixture over medium heat.",
+        "Step 4: Serve and enjoy your meal!"
+      ]
+    },
+    {
+      "id": 3,
+      "title": "Recipe 3",
+      "description": "This is a description of Recipe 3.",
+      "date": "2023-10-03",
+      "image": "/000012.jpg",
+      "correctOtp": "111111",
+      "content": [
+        "Step 1: Prepare the ingredients.",
+        "Step 2: Mix the ingredients together.",
+        "Step 3: Cook the mixture over medium heat.",
+        "Step 4: Serve and enjoy your meal!"
+      ]
+    },
+    {
+      "id": 4,
+      "title": "Recipe 4",
+      "description": "This is a description of Recipe 4.",
+      "date": "2023-10-04",
+      "image": "/00029.jpg",
+      "correctOtp": "222222",
+      "content": [
+        "Step 1: Gather all ingredients.",
+        "Step 2: Preheat the oven to 350°F.",
+        "Step 3: Mix ingredients in a bowl.",
+        "Step 4: Bake for 25 minutes.",
+        "Step 5: Let it cool and serve."
+      ]
+    },
+    {
+      "id": 5,
+      "title": "Recipe 5",
+      "description": "This is a description of Recipe 5.",
+      "date": "2023-10-05",
+      "image": "/00031.jpg",
+      "correctOtp": "333333",
+      "content": [
+        "Step 1: Gather all ingredients.",
+        "Step 2: Preheat the oven to 375°F.",
+        "Step 3: Mix ingredients in a bowl.",
+        "Step 4: Bake for 30 minutes.",
+        "Step 5: Let it cool and serve."
+      ]
+    }
+]

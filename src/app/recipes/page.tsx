@@ -8,6 +8,7 @@ import Footer from '../../components/Footer'; // Импортируем комп
 import SideButtons from '../../components/ui/SiteButtons'; // Импортируем компонент SideButtons
 import { InputOTP, InputOTPGroup, InputOTPSlot } from '../../components/ui/input-otp'; // Импортируем компонент InputOTP
 import { Button } from '@/components/ui/button'; // Импортируем компонент Button
+import recipesData from '../../data/recipes.json'; // Импортируем данные рецептов
 
 const RecipesPage = () => {
   const [isDarkMode, setIsDarkMode] = useState(false);
@@ -67,31 +68,6 @@ const RecipesPage = () => {
     darkMode: 'Dark Mode',
   };
 
-  const recipes = [
-    {
-      title: 'Recipe 1',
-      description: 'This is a description of Recipe 1.',
-      date: '2023-10-01',
-      image: '/000012.jpg',
-      correctOtp: '123456'
-    },
-    {
-      title: 'Recipe 2',
-      description: 'This is a description of Recipe 2.',
-      date: '2023-10-02',
-      image: '/000012.jpg',
-      correctOtp: '654321'
-    },
-    {
-      title: 'Recipe 3',
-      description: 'This is a description of Recipe 3.',
-      date: '2023-10-03',
-      image: '/000012.jpg',
-      correctOtp: '111111'
-    },
-    // Добавьте остальные рецепты
-  ];
-
   return (
     <div className="bg-cover bg-center min-h-screen flex flex-col dark:bg-black dark:text-white">
       <Header
@@ -117,8 +93,8 @@ const RecipesPage = () => {
               <span>My Recipes</span>
             </h1>
             <div className='mt-8 space-y-8'>
-              {recipes.map((recipe, index) => (
-                <div key={index} className="flex flex-col md:flex-row items-center md:items-start border-b border-gray-300 dark:border-gray-700 py-4">
+              {recipesData.map((recipe) => (
+                <div key={recipe.id} className="flex flex-col md:flex-row items-center md:items-start border-b border-gray-300 dark:border-gray-700 py-4">
                   <div className="w-full md:w-1/2 md:pr-4 flex justify-center md:justify-start mb-4 md:mb-0">
                     <Image src={recipe.image} alt={recipe.title} width={200} height={150} className="rounded-lg shadow-md" style={{ width: 'auto', height: 'auto' }} />
                   </div>
@@ -126,9 +102,9 @@ const RecipesPage = () => {
                     <h2 className='text-2xl font-bold'>{recipe.title}</h2>
                     <p className='text-gray-500 dark:text-gray-400'>{recipe.date}</p>
                     <p className='text-gray-700 dark:text-gray-300'>{recipe.description}</p>
-                    {!visibleRecipes[index] && (
+                    {!visibleRecipes[recipe.id] && (
                       <div className="flex items-center space-x-4 mt-4">
-                        <InputOTP value={otpValues[index] || ''} onChange={(otp) => handleOtpChange(index, otp)} maxLength={6}>
+                        <InputOTP value={otpValues[recipe.id] || ''} onChange={(otp) => handleOtpChange(recipe.id, otp)} maxLength={6}>
                           <InputOTPGroup>
                             {Array.from({ length: 6 }).map((_, idx) => (
                               <InputOTPSlot key={idx} index={idx} />
@@ -136,22 +112,21 @@ const RecipesPage = () => {
                           </InputOTPGroup>
                         </InputOTP>
                         <Button
-                          onClick={() => verifyOtp(index, recipe.correctOtp)}
+                          onClick={() => verifyOtp(recipe.id, recipe.correctOtp)}
                           className="px-4 py-2 rounded-full shadow-lg transition-all duration-300 text-sm font-semibold tracking-wide"
                         >
                           Verify
                         </Button>
                       </div>
                     )}
-                    <div className={`mt-4 ${!visibleRecipes[index] ? "blur-sm" : ""}`}>
+                    <div className={`mt-4 ${!visibleRecipes[recipe.id] ? "blur-sm" : ""}`}>
                       <p>
                         Here is the rest of the recipe content that was hidden before. Follow these steps to make the dish:
                       </p>
                       <ul className="list-disc list-inside mt-2">
-                        <li>Step 1: Prepare the ingredients.</li>
-                        <li>Step 2: Mix the ingredients together.</li>
-                        <li>Step 3: Cook the mixture over medium heat.</li>
-                        <li>Step 4: Serve and enjoy your meal!</li>
+                        {recipe.content.map((step, index) => (
+                          <li key={index}>{step}</li>
+                        ))}
                       </ul>
                     </div>
                   </div>

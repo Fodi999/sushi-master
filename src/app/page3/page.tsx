@@ -85,7 +85,7 @@ const Page3 = () => {
       <div className="flex flex-col items-center flex-grow px-4 sm:px-6 lg:px-8">
         <main className='flex flex-col md:flex-row items-center justify-center w-full max-w-6xl py-24'>
           <div className='flex-1 text-center md:text-left'>
-            <div className='max-w-md'>
+            <div className='max-w-md mx-auto md:mx-0'>
               <h1 className='text-4xl md:text-5xl font-semibold leading-tight'>
                 <span>Sushi Master Dima Fomin - Page 3</span>
               </h1>
@@ -100,7 +100,7 @@ const Page3 = () => {
               </Button>
             </div>
           </div>
-          <div className='flex-1 mt-10 md:mt-0 relative'>
+          <div className='flex-1 mt-10 md:mt-0 relative w-full max-w-md mx-auto'>
             <Carousel>
               <CarouselPrevious className="absolute left-4 top-1/2 transform -translate-y-1/2 z-10" />
               <CarouselContent>
