@@ -128,6 +128,24 @@ const RecipesPage = () => {
                           <li key={index}>{step}</li>
                         ))}
                       </ul>
+                      <table className="table-fixed mt-4 w-full">
+                        <thead>
+                          <tr>
+                            <th className="px-4 py-2">Product</th>
+                            <th className="px-4 py-2">Cooking Technology</th>
+                            <th className="px-4 py-2">Weight (g)</th>
+                          </tr>
+                        </thead>
+                        <tbody>
+                          {recipe.ingredients.map((ingredient, index) => (
+                            <tr key={index}>
+                              <td className="border px-4 py-2">{ingredient.product}</td>
+                              <td className="border px-4 py-2">{ingredient.cookingTechnology}</td>
+                              <td className="border px-4 py-2">{ingredient.weight}</td>
+                            </tr>
+                          ))}
+                        </tbody>
+                      </table>
                     </div>
                   </div>
                 </div>
