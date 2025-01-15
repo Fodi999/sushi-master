@@ -135,6 +135,7 @@ const BlogPage = () => {
                     </AccordionTrigger>
                     <AccordionContent>
                       <div className='text-gray-700 dark:text-gray-300' dangerouslySetInnerHTML={{ __html: blog.content }} />
+                      <div className="border-b-2 border-gray-300 my-4"></div>
                     </AccordionContent>
                   </AccordionItem>
                 ))}

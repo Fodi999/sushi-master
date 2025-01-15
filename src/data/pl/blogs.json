@@ -1,30 +1,28 @@
 {
-    "blogs": [
-      {
-        "id": 1,
-        "title": "Post na blogu 1",
-        "content": "<ul class=\"list-disc pl-5\"><li><strong>Ten blog jest napisany dla tych, którzy są gotowi odkryć pyszne kombinacje smaków.</strong></li><li>Chcę opowiedzieć i nauczyć Cię, jak gotować nowe dania, które wymyślam i gotuję, aby Cię zaskoczyć, oraz podzielić się z Tobą pomysłami i smakami.</li><li>Dla każdego kucharza możliwość tworzenia z tego, co jest pod ręką, jest zawsze niesamowita i wspaniała. Ścisłe przepisy ograniczają kreatywność. Do niedawna próby i błędy były jedynym sposobem na poznanie, które produkty będą dobrze ze sobą współgrać.</li><li>A ozdabianie rodzinnego stołu swoim dziełem to podwójna przyjemność. Coś nowego zawsze będzie radością dla Twoich bliskich i przyjaciół. I nieważne, co otrzymasz w rezultacie, możesz być pewien jednego: zawsze będzie to smaczne i zdrowe.</li><li>Jak w każdej dziedzinie, tutaj również ważne są umiejętność obsługi sprzętu i znajomość procesu technologicznego. Gotowanie nie różni się od innych rzemiosł: Twoimi narzędziami mogą być gołe ręce, a Twoimi przyborami mogą być produkty, ale ważne jest również, aby wiedzieć, jak powinny działać i współdziałać z innymi składnikami.</li><li>Opowiem Ci, z jakimi produktami pracuję i jakie korzyści nam przynoszą. Aby nie zaczynać od zera, możesz wziąć te przepisy za podstawę i tworzyć nowe kulinarne arcydzieła.</li><li>Jesteś doświadczonym kucharzem czy początkującym? Kimkolwiek jesteś, mam nadzieję, że ten blog pomoże Ci odkryć swoje talenty.</li><li>Dodaj szczyptę nauki o smaku do swojego dania wiedzy! Niech ten blog otworzy przed Tobą świat nowych gastronomicznych smaków.</li></ul>",
-        "date": "2023-10-01",
-        "image": "/00031.jpg"
-      },
-      {
-        "id": 2,
-        "title": "Post na blogu 2",
-        "content": "Treść posta na blogu 2",
-        "date": "2023-10-02",
-        "image": "/000012.jpg"
-      },
-      {
-        "id": 3,
-        "title": "Post na blogu 3",
-        "content": "Treść posta na blogu 3",
-        "date": "2023-10-03",
-        "image": "/000012.jpg"
-      }
-    ],
-    "buttons": [
-      { "href": "/", "label": "Strona główna" },
-      { "href": "/page2", "label": "Strona 2" },
-      { "href": "/page3", "label": "Strona 3" }
-    ]
-  }
+  "blogs": [
+    {
+      "id": 1,
+      "title": "Post na blogu 1",
+      "content": "Wołowina Wagyu to unikalny produkt, który zdobył popularność wśród smakoszy dzięki swojemu wykwintnemu smakowi, teksturze i wartości odżywczej. Ten rodzaj mięsa pochodzi od specjalnej rasy japońskich krów, które są hodowane w warunkach ścisłej kontroli jakości i komfortu. Cechy i charakterystyka Marmurkowatość Wołowina Wagyu jest znana ze swojego wysokiego stopnia marmurkowatości, dzięki czemu jest niezwykle soczysta i delikatna. Bogaty smak Smak Wagyu jest bogaty i głęboki, z wyraźnymi słodkimi nutami i rozpływającą się teksturą. Korzyści zdrowotne Wołowina Wagyu zawiera korzystne kwasy tłuszczowe omega-3 i omega-6, wysokiej jakości białko i przeciwutleniacze, co sprawia, że jest nie tylko smaczna, ale i zdrowa. Gdzie hoduje się wołowinę Wagyu? Historycznie wołowina Wagyu pochodzi z Japonii, gdzie jest hodowana w regionach takich jak Kobe, Matsusaka, Omi i Hida. Dziś wołowina Wagyu jest również z powodzeniem produkowana w innych krajach, w tym: USA: Amerykańscy rolnicy dostosowali japońskie metody hodowli, aby stworzyć wysokiej jakości produkt. Australia: Australia jest jednym z największych eksporterów Wagyu poza Japonią. Kanada: Produkcja Wagyu w Kanadzie rośnie dzięki połączeniu japońskich tradycji i nowoczesnych technologii. Korea Południowa: Tutaj również zyskują na popularności farmy Wagyu. Klasy wołowiny Wagyu Wołowina Wagyu jest klasyfikowana w zależności od poziomu marmurkowatości, jakości mięsa i zawartości tłuszczu. W Japonii stosuje się ścisły system ocen: Klasa A5: Najwyższa klasa. Maksymalny poziom marmurkowatości, bogaty smak i delikatna tekstura. To elitarne mięso przeznaczone dla prawdziwych smakoszy. Klasa A4: Również wysoka jakość, ale nieco mniej marmurkowatości niż A5. Klasa A3: Średni poziom marmurkowatości, doskonałe połączenie smaku i ceny. Klasy poniżej A3: Te kategorie są również smaczne, ale mają mniej wyraźną marmurkowatość i nadają się do codziennego spożycia. Jak przygotować wołowinę Wagyu? Wołowina Wagyu jest wszechstronna i nadaje się do różnych technik kulinarnych: Grillowanie: Idealna do steków na grillu lub patelni. Duszenie: Sprawia, że mięso staje się jeszcze bardziej soczyste i aromatyczne. Sous-vide: Precyzyjna kontrola temperatury pozwala zachować soczystość i teksturę. Pieczenie: Szczególnie smaczne z minimalną ilością przypraw, aby podkreślić naturalny smak mięsa. Popularne danie to stek Wagyu z masłem truflowym. To prawdziwy przysmak, który podbija serca smakoszy na całym świecie. Dlaczego warto wybrać Wagyu? Jakość premium: Producenci zwracają uwagę na każdy szczegół, od karmienia krów po warunki ich hodowli. Gastronomiczna przyjemność: To mięso jest synonimem luksusu i wyrafinowanego smaku. Korzyści zdrowotne: Naturalne tłuszcze Wagyu są łatwo przyswajalne i przynoszą organizmowi same korzyści. Podsumowanie Wołowina Wagyu to więcej niż tylko produkt spożywczy. To symbol wyrafinowania, luksusu i gastronomicznej rozkoszy. Jeśli chcesz podarować sobie lub swoim bliskim niezapomniany smak, Wagyu będzie idealnym wyborem.",
+      "date": "2025-10-01",
+      "image": "/vagu1.jpg"
+    },
+    {
+      "id": 2,
+      "title": "Post na blogu 2",
+      "content": "Treść posta na blogu 2",
+      "date": "2023-10-02",
+      "image": "/000012.jpg"
+    },
+    {
+      "id": 3,
+      "title": "Post na blogu 3",
+      "content": "Treść posta na blogu 3",
+      "date": "2023-10-03",
+      "image": "/000012.jpg"
+    }
+  ],
+  "buttons": [
+    { "href": "/", "label": "Strona główna" }
+  ]
+}

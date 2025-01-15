@@ -1,30 +1,28 @@
 {
-    "blogs": [
-      {
-        "id": 1,
-        "title": "Blog Post 1",
-        "content": "<ul class=\"list-disc pl-5\"><li><strong>This blog is written for those who are ready to discover delicious combinations of flavors.</strong></li><li>I want to tell and teach you how to cook new dishes that I invent and cook in order to surprise you, and share with you ideas and flavors.</li><li>For every cook, the opportunity to create from what is at hand is always amazing and wonderful. Strict recipes limit creativity. Until recently, trial and error was the only way to find out which products will go well together.</li><li>And decorating the family table with your creation is double the pleasure. Something new will always be a joy for your loved ones and friends. And no matter what you get as a result, you can be firmly sure of one thing: it will always be tasty and healthy.</li><li>As in any business, the ability to handle equipment and knowledge of the technological process are also important here. Cooking is no different from other crafts: your tools can be bare hands, and your utensils can be products, but it is also important to know how they should act and interact with other components.</li><li>I will tell you what products I work with and what benefits they bring to us. In order not to start from scratch, you can take these recipes as a basis and create new culinary masterpieces.</li><li>Are you an experienced cook or a beginner? Whoever you are, I hope this Blog will help you to reveal your talents.</li><li>Add a pinch of taste science to your dish of knowledge! Let this Blog open up a world of new gastronomic Tastes to you.</li></ul>",
-        "date": "2023-10-01",
-        "image": "/00031.jpg"
-      },
-      {
-        "id": 2,
-        "title": "Blog Post 2",
-        "content": "Content of blog post 2",
-        "date": "2023-10-02",
-        "image": "/000012.jpg"
-      },
-      {
-        "id": 3,
-        "title": "Blog Post 3",
-        "content": "Content of blog post 3",
-        "date": "2023-10-03",
-        "image": "/000012.jpg"
-      }
-    ],
-    "buttons": [
-      { "href": "/", "label": "Home" },
-      { "href": "/page2", "label": "Page 2" },
-      { "href": "/page3", "label": "Page 3" }
-    ]
-  }
+  "blogs": [
+    {
+      "id": 1,
+      "title": "Blog Post 1",
+      "content": "Wagyu beef is a unique product that has gained popularity among gourmets due to its exquisite taste, texture, and nutritional value. This type of meat comes from a special breed of Japanese cows that are raised under strict quality control and comfort conditions. Features and Characteristics Marbling Wagyu beef is known for its high degree of marbling, which makes it incredibly juicy and tender. Rich Flavor The taste of Wagyu is rich and deep, with pronounced sweet notes and a melting texture. Health Benefits Wagyu beef contains beneficial omega-3 and omega-6 fatty acids, high-quality protein, and antioxidants, making it not only delicious but also healthy. Where is Wagyu Beef Raised? Historically, Wagyu beef comes from Japan, where it is raised in regions such as Kobe, Matsusaka, Omi, and Hida. Today, Wagyu beef is also successfully produced in other countries, including: USA: American farmers have adapted Japanese breeding methods to create a high-quality product. Australia: Australia is one of the largest exporters of Wagyu outside of Japan. Canada: Wagyu production in Canada is growing thanks to a combination of Japanese traditions and modern technologies. South Korea: Wagyu farms are also gaining popularity here. Wagyu Beef Grades Wagyu beef is classified based on the level of marbling, meat quality, and fat content. Japan uses a strict grading system: Grade A5: The highest grade. Maximum marbling, rich flavor, and tender texture. This elite meat is intended for true gourmets. Grade A4: Also high quality, but with slightly less marbling than A5. Grade A3: Medium marbling, excellent balance of flavor and price. Grades below A3: These categories are also tasty but have less pronounced marbling and are suitable for everyday consumption. How to Cook Wagyu Beef? Wagyu beef is versatile and suitable for various culinary techniques: Grilling: Perfect for steaks on the grill or skillet. Braising: Makes the meat even juicier and more flavorful. Sous-vide: Precise temperature control preserves juiciness and texture. Roasting: Especially delicious with minimal spices to highlight the natural flavor of the meat. A popular dish is Wagyu steak with truffle butter. This is a true delicacy that wins the hearts of gourmets around the world. Why Choose Wagyu? Premium Quality: Producers pay attention to every detail, from feeding the cows to their living conditions. Gastronomic Pleasure: This meat is synonymous with luxury and refined taste. Health Benefits: The natural fats in Wagyu are easily absorbed and beneficial to the body. Conclusion Wagyu beef is more than just a food product. It is a symbol of sophistication, luxury, and gastronomic delight. If you want to treat yourself or your loved ones to an unforgettable taste, Wagyu is the perfect choice.",
+      "date": "2025-10-01",
+      "image": "/vagu1.jpg"
+    },
+    {
+      "id": 2,
+      "title": "Blog Post 2",
+      "content": "Content of blog post 2",
+      "date": "2023-10-02",
+      "image": "/000012.jpg"
+    },
+    {
+      "id": 3,
+      "title": "Blog Post 3",
+      "content": "Content of blog post 3",
+      "date": "2023-10-03",
+      "image": "/000012.jpg"
+    }
+  ],
+  "buttons": [
+    { "href": "/", "label": "Home" }
+  ]
+}
