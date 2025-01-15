@@ -9,9 +9,29 @@ import Image from 'next/image'; // Импортируем компонент Ima
 import { Button } from '../components/ui/button'; // Импортируем компонент Button
 import SideButtons from '../components/ui/SiteButtons'; // Импортируем компонент SideButtons
 
-const Page = () => {
+interface PageData {
+  title: string;
+  header: string;
+  about: string;
+  images: { image: string; title: string }[];
+  links: { href: string; label: string }[];
+}
+
+interface ButtonsData {
+  home: string;
+  blog: string;
+  language: string;
+  myRecipes: string;
+  lightMode: string;
+  darkMode: string;
+}
+
+const Page: React.FC = () => {
   const [isExpanded, setIsExpanded] = useState(false);
   const [isDarkMode, setIsDarkMode] = useState(false);
+  const [language, setLanguage] = useState('en');
+  const [currentData, setCurrentData] = useState<PageData | null>(null);
+  const [buttons, setButtons] = useState<ButtonsData | null>(null);
 
   useEffect(() => {
     const savedTheme = localStorage.getItem('theme');
@@ -22,14 +42,36 @@ const Page = () => {
       setIsDarkMode(false);
       document.documentElement.classList.remove('dark');
     }
+
+    const savedLanguage = localStorage.getItem('language');
+    if (savedLanguage) {
+      setLanguage(savedLanguage);
+    }
+
+    loadLanguageData(savedLanguage || 'en');
+    loadButtonsData(savedLanguage || 'en');
   }, []);
+
+  const loadLanguageData = async (lang: string) => {
+    const data = await import(`../data/${lang}/pages.json`);
+    setCurrentData(data.default);
+  };
+
+  const loadButtonsData = async (lang: string) => {
+    const data = await import(`../data/${lang}/buttons.json`);
+    setButtons(data.default);
+  };
 
   const toggleText = () => {
     setIsExpanded(!isExpanded);
   };
 
   const toggleLanguage = () => {
-    // Логика переключения языка
+    const newLanguage = language === 'en' ? 'pl' : language === 'pl' ? 'ru' : 'en';
+    setLanguage(newLanguage);
+    localStorage.setItem('language', newLanguage);
+    loadLanguageData(newLanguage);
+    loadButtonsData(newLanguage);
   };
 
   const toggleRecipes = () => {
@@ -48,26 +90,14 @@ const Page = () => {
     }
   };
 
-  const buttons = {
-    home: 'Home',
-    blog: 'Blog',
-    language: 'Language',
-    myRecipes: 'My Recipes',
-    lightMode: 'Light Mode',
-    darkMode: 'Dark Mode',
-  };
-
-  const pages = [
-    { image: '/00029.jpg', title: 'Image 1' },
-    { image: '/00030.jpg', title: 'Image 2' },
-    { image: '/00031.jpg', title: 'Image 3' },
-    // Добавьте остальные страницы
-  ];
+  if (!currentData || !buttons) {
+    return <div>Loading...</div>;
+  }
 
   return (
     <div className="bg-cover bg-center min-h-screen flex flex-col dark:bg-black dark:text-white">
       <Header
-        title="Sushi Master"
+        title={currentData.title}
         buttons={buttons}
         toggleLanguage={toggleLanguage}
         toggleRecipes={toggleRecipes}
@@ -87,10 +117,10 @@ const Page = () => {
           <div className='flex-1 text-center md:text-left'>
             <div className='max-w-md mx-auto md:mx-0'>
               <h1 className='text-3xl sm:text-4xl md:text-5xl font-semibold leading-tight'>
-                <span>Sushi Master Dima Fomin</span>
+                <span>{currentData.header}</span>
               </h1>
               <div className={`text-gray-500 text-lg mt-2 transition-opacity duration-300 ${isExpanded ? 'max-h-full' : 'max-h-20 overflow-hidden'}`}>
-                <p className='block whitespace-pre-line'>About myself: I have been professionally involved in products for 20 years now, I have worked in different countries, I have seen many technologies on how to work and create new products.</p>
+                <p className='block whitespace-pre-line'>{currentData.about}</p>
               </div>
               <Button
                 onClick={toggleText}
@@ -104,7 +134,7 @@ const Page = () => {
             <Carousel>
               <CarouselPrevious className="absolute left-4 top-1/2 transform -translate-y-1/2 z-10 md:left-4" />
               <CarouselContent>
-                {pages.map((page, index) => (
+                {currentData.images.map((page, index) => (
                   <CarouselItem key={index}>
                     <Image
                       src={page.image}

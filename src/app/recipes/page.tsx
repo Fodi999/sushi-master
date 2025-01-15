@@ -6,14 +6,48 @@ import Image from 'next/image'; // Импортируем компонент Ima
 import Header from '../../components/Header'; // Импортируем компонент Header
 import Footer from '../../components/Footer'; // Импортируем компонент Footer
 import SideButtons from '../../components/ui/SiteButtons'; // Импортируем компонент SideButtons
+import MobileButtons from '../../components/ui/MobileButtons'; // Импортируем компонент MobileButtons
 import { InputOTP, InputOTPGroup, InputOTPSlot } from '../../components/ui/input-otp'; // Импортируем компонент InputOTP
 import { Button } from '@/components/ui/button'; // Импортируем компонент Button
-import recipesData from '../../data/recipes.json'; // Импортируем данные рецептов
+
+interface Recipe {
+  id: number;
+  title: string;
+  description: string;
+  date: string;
+  image: string;
+  correctOtp: string;
+  content: string[];
+  ingredients: { product: string; cookingTechnology: string; weight: number }[];
+  verifyButtonText: string;
+  hiddenContentText: string;
+  tableHeaders: {
+    product: string;
+    cookingTechnology: string;
+    weight: string;
+  };
+  pageTitle: string;
+}
+
+interface RecipesData {
+  recipes: Recipe[];
+  buttons: {
+    home: string;
+    blog: string;
+    language: string;
+    myRecipes: string;
+    lightMode: string;
+    darkMode: string;
+  };
+}
 
 const RecipesPage = () => {
   const [isDarkMode, setIsDarkMode] = useState(false);
   const [otpValues, setOtpValues] = useState<{ [key: number]: string }>({});
   const [visibleRecipes, setVisibleRecipes] = useState<{ [key: number]: boolean }>({});
+  const [language, setLanguage] = useState('en');
+  const [currentData, setCurrentData] = useState<RecipesData | null>(null);
+  const [isMenuOpen, setIsMenuOpen] = useState(false);
 
   useEffect(() => {
     const savedTheme = localStorage.getItem('theme');
@@ -24,10 +58,63 @@ const RecipesPage = () => {
       setIsDarkMode(false);
       document.documentElement.classList.remove('dark');
     }
+
+    const savedLanguage = localStorage.getItem('language');
+    if (savedLanguage) {
+      setLanguage(savedLanguage);
+    }
+
+    loadLanguageData(savedLanguage || 'en');
+    loadButtonsData(savedLanguage || 'en');
   }, []);
 
+  const loadLanguageData = async (lang: string) => {
+    try {
+      const data = await import(`../../data/${lang}/recipes.json`);
+      if (data.default) {
+        setCurrentData((prevData) => ({
+          ...prevData,
+          recipes: data.default.recipes,
+          buttons: prevData?.buttons || {
+            home: '',
+            blog: '',
+            language: '',
+            myRecipes: '',
+            lightMode: '',
+            darkMode: '',
+          },
+        }));
+      } else {
+        console.error("Data format is incorrect:", data);
+      }
+    } catch (error) {
+      console.error("Error loading language data:", error);
+    }
+  };
+
+  const loadButtonsData = async (lang: string) => {
+    try {
+      const data = await import(`../../data/${lang}/buttons.json`);
+      if (data.default) {
+        setCurrentData((prevData) => ({
+          ...prevData,
+          buttons: data.default,
+          recipes: prevData?.recipes || [],
+        }));
+      } else {
+        console.error("Data format is incorrect:", data);
+      }
+    } catch (error) {
+      console.error("Error loading buttons data:", error);
+    }
+  };
+
   const toggleLanguage = () => {
-    // Логика переключения языка
+    const newLanguage = language === 'en' ? 'pl' : language === 'pl' ? 'ru' : 'en';
+    setLanguage(newLanguage);
+    localStorage.setItem('language', newLanguage);
+    loadLanguageData(newLanguage);
+    loadButtonsData(newLanguage);
   };
 
   const toggleRecipes = () => {
@@ -59,14 +146,15 @@ const RecipesPage = () => {
     }
   };
 
-  const buttons = {
-    home: 'Home',
-    blog: 'Blog',
-    language: 'Language',
-    myRecipes: 'My Recipes',
-    lightMode: 'Light Mode',
-    darkMode: 'Dark Mode',
+  const toggleMenu = () => {
+    setIsMenuOpen(!isMenuOpen);
   };
+
+  if (!currentData || !Array.isArray(currentData.recipes)) {
+    return <div>Loading...</div>;
+  }
+
+  const { buttons } = currentData;
 
   return (
     <div className="bg-cover bg-center min-h-screen flex flex-col dark:bg-black dark:text-white">
@@ -85,15 +173,24 @@ const RecipesPage = () => {
         toggleTheme={toggleTheme}
         isDarkMode={isDarkMode}
       />
+      <MobileButtons
+        buttons={buttons}
+        toggleLanguage={toggleLanguage}
+        toggleRecipes={toggleRecipes}
+        toggleTheme={toggleTheme}
+        isDarkMode={isDarkMode}
+        isMenuOpen={isMenuOpen}
+        toggleMenu={toggleMenu}
+      />
       {/* Ваш контент */}
       <div className="flex flex-col items-center flex-grow px-4 sm:px-6 lg:px-8">
         <main className='flex flex-col items-center justify-center w-full max-w-6xl py-24'>
           <div className='w-full'>
             <h1 className='text-4xl md:text-5xl font-semibold leading-tight text-center'>
-              <span>My Recipes</span>
+              <span>{currentData.recipes[0]?.pageTitle || "Recipes"}</span>
             </h1>
             <div className='mt-8 space-y-8'>
-              {recipesData.map((recipe) => (
+              {currentData.recipes.map((recipe) => (
                 <div key={recipe.id} className="flex flex-col md:flex-row items-center md:items-start border-b border-gray-300 dark:border-gray-700 py-4">
                   <div className="w-full md:w-1/2 md:pr-4 flex justify-center md:justify-start mb-4 md:mb-0">
                     <Image src={recipe.image} alt={recipe.title} width={200} height={150} className="rounded-lg shadow-md" style={{ width: 'auto', height: 'auto' }} />
@@ -115,37 +212,39 @@ const RecipesPage = () => {
                           onClick={() => verifyOtp(recipe.id, recipe.correctOtp)}
                           className="px-4 py-2 rounded-full shadow-lg transition-all duration-300 text-sm font-semibold tracking-wide"
                         >
-                          Verify
+                          {recipe.verifyButtonText}
                         </Button>
                       </div>
                     )}
                     <div className={`mt-4 ${!visibleRecipes[recipe.id] ? "blur-sm" : ""}`}>
                       <p>
-                        Here is the rest of the recipe content that was hidden before. Follow these steps to make the dish:
+                        {recipe.hiddenContentText}
                       </p>
                       <ul className="list-disc list-inside mt-2">
                         {recipe.content.map((step, index) => (
                           <li key={index}>{step}</li>
                         ))}
                       </ul>
-                      <table className="table-fixed mt-4 w-full">
-                        <thead>
-                          <tr>
-                            <th className="px-4 py-2">Product</th>
-                            <th className="px-4 py-2">Cooking Technology</th>
-                            <th className="px-4 py-2">Weight (g)</th>
-                          </tr>
-                        </thead>
-                        <tbody>
-                          {recipe.ingredients.map((ingredient, index) => (
-                            <tr key={index}>
-                              <td className="border px-4 py-2">{ingredient.product}</td>
-                              <td className="border px-4 py-2">{ingredient.cookingTechnology}</td>
-                              <td className="border px-4 py-2">{ingredient.weight}</td>
+                      {recipe.ingredients && recipe.ingredients.length > 0 && (
+                        <table className="table-fixed mt-4 w-full">
+                          <thead>
+                            <tr>
+                              <th className="px-4 py-2">{recipe.tableHeaders?.product || "Product"}</th>
+                              <th className="px-4 py-2">{recipe.tableHeaders?.cookingTechnology || "Cooking Technology"}</th>
+                              <th className="px-4 py-2">{recipe.tableHeaders?.weight || "Weight (g)"}</th>
                             </tr>
-                          ))}
-                        </tbody>
-                      </table>
+                          </thead>
+                          <tbody>
+                            {recipe.ingredients.map((ingredient, index) => (
+                              <tr key={index}>
+                                <td className="border px-4 py-2">{ingredient.product}</td>
+                                <td className="border px-4 py-2">{ingredient.cookingTechnology}</td>
+                                <td className="border px-4 py-2">{ingredient.weight}</td>
+                              </tr>
+                            ))}
+                          </tbody>
+                        </table>
+                      )}
                     </div>
                   </div>
                 </div>

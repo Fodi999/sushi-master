@@ -1,0 +1,15 @@
+{
+  "title": "Sushi Master - Page 2",
+  "header": "Sushi Master Dima Fomin - Page 2",
+  "about": "About myself: I have been professionally involved in products for 20 years now, I have worked in different countries, I have seen many technologies on how to work and create new products.",
+  "images": [
+    { "image": "/00029.jpg", "title": "Image 1" },
+    { "image": "/00030.jpg", "title": "Image 2" },
+    { "image": "/00031.jpg", "title": "Image 3" }
+  ],
+  "links": [
+    { "href": "/", "label": "Home" },
+    { "href": "/page2", "label": "Page 2" },
+    { "href": "/page3", "label": "Page 3" }
+  ]
+}

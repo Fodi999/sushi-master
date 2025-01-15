@@ -8,10 +8,32 @@ import { Carousel, CarouselPrevious, CarouselContent, CarouselItem, CarouselNext
 import Image from 'next/image'; // Импортируем компонент Image
 import { Button } from '../../components/ui/button'; // Импортируем компонент Button
 import SideButtons from '../../components/ui/SiteButtons'; // Импортируем компонент SideButtons
+import MobileButtons from '../../components/ui/MobileButtons'; // Импортируем компонент MobileButtons
+
+interface ButtonsData {
+  home: string;
+  blog: string;
+  language: string;
+  myRecipes: string;
+  lightMode: string;
+  darkMode: string;
+}
+
+interface PageData {
+  title: string;
+  header: string;
+  about: string;
+  images: { image: string; title: string }[];
+  buttons: ButtonsData;
+  links: { href: string; label: string }[];
+}
 
 const Page3 = () => {
   const [isExpanded, setIsExpanded] = useState(false);
   const [isDarkMode, setIsDarkMode] = useState(false);
+  const [language, setLanguage] = useState('en');
+  const [currentData, setCurrentData] = useState<PageData | null>(null);
+  const [isMenuOpen, setIsMenuOpen] = useState(false);
 
   useEffect(() => {
     const savedTheme = localStorage.getItem('theme');
@@ -22,14 +44,56 @@ const Page3 = () => {
       setIsDarkMode(false);
       document.documentElement.classList.remove('dark');
     }
+
+    const savedLanguage = localStorage.getItem('language');
+    if (savedLanguage) {
+      setLanguage(savedLanguage);
+    }
+
+    loadLanguageData(savedLanguage || 'en');
+    loadButtonsData(savedLanguage || 'en');
   }, []);
+
+  const loadLanguageData = async (lang: string) => {
+    try {
+      const data = await import(`../../data/${lang}/page3.json`);
+      setCurrentData(data.default);
+    } catch (error) {
+      console.error("Error loading language data:", error);
+    }
+  };
+
+  const loadButtonsData = async (lang: string) => {
+    try {
+      const data = await import(`../../data/${lang}/buttons.json`);
+      setCurrentData((prevData) => ({
+        ...prevData,
+        buttons: {
+          ...prevData?.buttons,
+          ...data.default,
+        },
+        title: prevData?.title || "",
+        header: prevData?.header || "",
+        about: prevData?.about || "",
+        images: prevData?.images || [],
+        links: prevData?.links || [],
+      }));
+    } catch (error) {
+      console.error("Error loading buttons data:", error);
+    }
+  };
+  
 
   const toggleText = () => {
     setIsExpanded(!isExpanded);
   };
 
   const toggleLanguage = () => {
-    // Логика переключения языка
+    const newLanguage = language === 'en' ? 'pl' : language === 'pl' ? 'ru' : 'en';
+    setLanguage(newLanguage);
+    localStorage.setItem('language', newLanguage);
+    loadLanguageData(newLanguage);
+    loadButtonsData(newLanguage);
   };
 
   const toggleRecipes = () => {
@@ -48,38 +112,39 @@ const Page3 = () => {
     }
   };
 
-  const buttons = {
-    home: 'Home',
-    blog: 'Blog',
-    language: 'Language',
-    myRecipes: 'My Recipes',
-    lightMode: 'Light Mode',
-    darkMode: 'Dark Mode',
+  const toggleMenu = () => {
+    setIsMenuOpen(!isMenuOpen);
   };
 
-  const pages = [
-    { image: '/00029.jpg', title: 'Image 1' },
-    { image: '/00030.jpg', title: 'Image 2' },
-    { image: '/00031.jpg', title: 'Image 3' },
-    // Добавьте остальные страницы
-  ];
+  if (!currentData) {
+    return <div>Loading...</div>;
+  }
 
   return (
     <div className="bg-cover bg-center min-h-screen flex flex-col dark:bg-black dark:text-white">
       <Header
-        title="Sushi Master - Page 3"
-        buttons={buttons}
+        title={currentData.title}
+        buttons={currentData.buttons}
         toggleLanguage={toggleLanguage}
         toggleRecipes={toggleRecipes}
         toggleTheme={toggleTheme}
         isDarkMode={isDarkMode}
       />
       <SideButtons
-        buttons={buttons}
+        buttons={currentData.buttons}
         toggleLanguage={toggleLanguage}
         toggleRecipes={toggleRecipes}
         toggleTheme={toggleTheme}
         isDarkMode={isDarkMode}
+      />
+      <MobileButtons
+        buttons={currentData.buttons}
+        toggleLanguage={toggleLanguage}
+        toggleRecipes={toggleRecipes}
+        toggleTheme={toggleTheme}
+        isDarkMode={isDarkMode}
+        isMenuOpen={isMenuOpen}
+        toggleMenu={toggleMenu}
       />
       {/* Ваш контент */}
       <div className="flex flex-col items-center flex-grow px-4 sm:px-6 lg:px-8">
@@ -87,10 +152,10 @@ const Page3 = () => {
           <div className='flex-1 text-center md:text-left'>
             <div className='max-w-md mx-auto md:mx-0'>
               <h1 className='text-4xl md:text-5xl font-semibold leading-tight'>
-                <span>Sushi Master Dima Fomin - Page 3</span>
+                <span>{currentData.header}</span>
               </h1>
               <div className={`text-gray-500 text-lg mt-2 transition-opacity duration-300 ${isExpanded ? 'max-h-full' : 'max-h-20 overflow-hidden'}`}>
-                <p className='block whitespace-pre-line'>About myself: I have been professionally involved in products for 20 years now, I have worked in different countries, I have seen many technologies on how to work and create new products.</p>
+                <p className='block whitespace-pre-line'>{currentData.about}</p>
               </div>
               <Button
                 onClick={toggleText}
@@ -104,7 +169,7 @@ const Page3 = () => {
             <Carousel>
               <CarouselPrevious className="absolute left-4 top-1/2 transform -translate-y-1/2 z-10" />
               <CarouselContent>
-                {pages.map((page, index) => (
+                {currentData.images.map((page, index) => (
                   <CarouselItem key={index}>
                     <Image
                       src={page.image}
@@ -122,14 +187,12 @@ const Page3 = () => {
           </div>
         </main>
         <div className="flex space-x-8 mt-8">
-          <Link href="/" className="px-4 py-2 rounded-full shadow-lg transition-all duration-300 text-sm font-semibold tracking-wide"
-            style={{ backgroundColor: 'var(--button-bg)', color: 'var(--button-text)', textTransform: 'uppercase', opacity: 0.7 }}>
-            Page 1
-          </Link>
-          <Link href="/page2" className="px-4 py-2 rounded-full shadow-lg transition-all duration-300 text-sm font-semibold tracking-wide"
-            style={{ backgroundColor: 'var(--button-bg)', color: 'var(--button-text)', textTransform: 'uppercase', opacity: 0.7 }}>
-            Page 2
-          </Link>
+          {currentData.links.map((link, index) => (
+            <Link key={index} href={link.href} className="px-4 py-2 rounded-full shadow-lg transition-all duration-300 text-sm font-semibold tracking-wide"
+              style={{ backgroundColor: 'var(--button-bg)', color: 'var(--button-text)', textTransform: 'uppercase', opacity: 0.7 }}>
+              {link.label}
+            </Link>
+          ))}
         </div>
       </div>
       <div className="mt-auto w-full">

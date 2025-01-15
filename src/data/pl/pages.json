@@ -1,0 +1,16 @@
+{
+    "title": "Mistrz Sushi",
+    "header": "Mistrz Sushi Dima Fomin",
+    "about": "O mnie: Od 20 lat profesjonalnie zajmuję się produktami, pracowałem w różnych krajach, widziałem wiele technologii dotyczących pracy i tworzenia nowych produktów.",
+    "images": [
+      { "image": "/00029.jpg", "title": "Image 1" },
+      { "image": "/00030.jpg", "title": "Image 2" },
+      { "image": "/00031.jpg", "title": "Image 3" }
+    ],
+ 
+    "links": [
+      { "href": "/", "label": "Strona główna" },
+      { "href": "/page2", "label": "Strona 2" },
+      { "href": "/page3", "label": "Strona 3" }
+    ]
+  }

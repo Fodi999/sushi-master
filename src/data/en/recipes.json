@@ -1,0 +1,66 @@
+{
+  "recipes": [
+    {
+      "id": 1,
+      "title": "Signature Guacamole Recipe .A developed guacamole recipe, perfect for fish and seafood.",
+      "description": "Write to me and I will send you the number. Follow these steps to make the dish:",
+      "date": "2023-10-01",
+      "image": "/guacamoli.jpg",
+      "correctOtp": "123456",
+      "content": [
+        "Step 1: Prepare the ingredients.",
+        "Step 2: Mix the ingredients together.",
+        "Step 3: Serve with fish and seafood or as a side dish."
+      ],
+      "ingredients": [
+        { "product": "Avocado pulp", "cookingTechnology": "Scoop and grate", "weight": 2000 },
+        { "product": "Lime juice", "cookingTechnology": "Freshly squeezed", "weight": 40 },
+        { "product": "Maldon salt", "cookingTechnology": "Add to taste", "weight": 20 },
+        { "product": "Yuzu juice", "cookingTechnology": "Add for citrus flavor", "weight": 100 },
+        { "product": "Cilantro leaves", "cookingTechnology": "Finely chopped", "weight": 40 },
+        { "product": "Garlic", "cookingTechnology": "Grated finely", "weight": 60 },
+        { "product": "Red chili pepper", "cookingTechnology": "Finely chopped", "weight": 30 },
+        { "product": "Japanese pepper", "cookingTechnology": "Add a pinch", "weight": 4 },
+        { "product": "Total weight", "cookingTechnology": "All products combined", "weight": 2229 }
+      ],
+      "verifyButtonText": "Verify",
+      "hiddenContentText": "Write to me and I will send you the number. Follow these steps to make the dish:",
+      "tableHeaders": {
+        "product": "Product",
+        "cookingTechnology": "Cooking Technology",
+        "weight": "Weight (g)"
+      },
+      "pageTitle": "My Recipes"
+    },
+    {
+      "id": 2,
+      "title": "Spicy Tuna Roll",
+      "description": "A delicious spicy tuna roll recipe for sushi lovers.",
+      "date": "2023-10-02",
+      "image": "/000015.jpg",
+      "correctOtp": "654321",
+      "content": [
+        "Step 1: Prepare the sushi rice.",
+        "Step 2: Mix the tuna with spicy mayo.",
+        "Step 3: Roll the sushi with nori and rice.",
+        "Step 4: Slice and serve with soy sauce."
+      ],
+      "ingredients": [
+        { "product": "Sushi Rice", "cookingTechnology": "Cook and season", "weight": 500 },
+        { "product": "Tuna", "cookingTechnology": "Dice and mix with spicy mayo", "weight": 200 },
+        { "product": "Nori", "cookingTechnology": "Use as is", "weight": 10 },
+        { "product": "Spicy Mayo", "cookingTechnology": "Mix with tuna", "weight": 50 },
+        { "product": "Soy Sauce", "cookingTechnology": "Serve as dipping sauce", "weight": 30 },
+        { "product": "Total weight", "cookingTechnology": "All products combined", "weight": 790 }
+      ],
+      "verifyButtonText": "Verify",
+      "hiddenContentText": "Here is the rest of the recipe content that was hidden before. Follow these steps to make the dish:",
+      "tableHeaders": {
+        "product": "Product",
+        "cookingTechnology": "Cooking Technology",
+        "weight": "Weight (g)"
+      },
+      "pageTitle": "My Recipes"
+    }
+  ]
+}

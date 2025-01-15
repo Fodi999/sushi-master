@@ -20,28 +20,25 @@ interface MobileButtonsProps {
 }
 
 const MobileButtons: React.FC<MobileButtonsProps> = ({ buttons, toggleLanguage, toggleRecipes, toggleTheme, isDarkMode, isMenuOpen, toggleMenu }) => {
+  if (!buttons) {
+    return null; // Возвращаем null, если buttons не определен
+  }
+
   return (
     <>
       {isMenuOpen && (
         <div className="absolute top-16 left-0 w-full bg-white bg-opacity-90 dark:bg-black dark:bg-opacity-90 text-black dark:text-white flex justify-center py-4 z-50">
           <div className="flex space-x-2">
-            <Link href="/">
+          
+            
+            <Link href="/recipes">
               <Button
+                onClick={toggleRecipes}
                 className="px-2 py-1 rounded-full transition text-sm"
                 style={{ backgroundColor: 'var(--button-bg)', color: 'var(--button-text)', opacity: 0.7 }}
-                onClick={toggleMenu}
               >
-                {buttons.home}
+                {buttons.myRecipes}
               </Button>
-            </Link>
-            <Link href="/recipes">
-            <Button
-              onClick={toggleRecipes}
-              className="px-2 py-1 rounded-full transition text-sm"
-              style={{ backgroundColor: 'var(--button-bg)', color: 'var(--button-text)', opacity: 0.7 }}
-            >
-              {buttons.myRecipes}
-            </Button>
             </Link>
             <Button
               onClick={toggleLanguage}

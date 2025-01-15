@@ -1,0 +1,66 @@
+{
+  "recipes": [
+    {
+      "id": 1,
+      "title": "Авторский рецепт Гуакамоле . Разработан рецепт Гуакамоле, идеально подходящий для рыбы и морепродуктов.",
+      "description": "Напишите мне я вам вышлю номер. Следуйте этим шагам, чтобы приготовить блюдо:",
+      "date": "2023-10-01",
+      "image": "/guacamoli.jpg",
+      "correctOtp": "123456",
+      "content": [
+        "Шаг 1: Подготовьте ингредиенты.",
+        "Шаг 2: Смешайте ингредиенты вместе.",
+        "Шаг 3: Подавайте с рыбой и морепродуктами или как гарнир."
+      ],
+      "ingredients": [
+        { "product": "Мякоть авокадо", "cookingTechnology": "Вынуть и натереть", "weight": 2000 },
+        { "product": "Сок лайма", "cookingTechnology": "Свежевыжатый", "weight": 40 },
+        { "product": "Соль Maldon", "cookingTechnology": "Добавить по вкусу", "weight": 20 },
+        { "product": "Сок Юзу", "cookingTechnology": "Добавить для цитрусового вкуса", "weight": 100 },
+        { "product": "Листья кинзы", "cookingTechnology": "Мелко нарезать", "weight": 40 },
+        { "product": "Чеснок", "cookingTechnology": "Натереть мелко", "weight": 60 },
+        { "product": "Красный перец чили", "cookingTechnology": "Мелко нарезать", "weight": 30 },
+        { "product": "Японский перец", "cookingTechnology": "Добавить щепотку", "weight": 4 },
+        { "product": "Общий вес", "cookingTechnology": "Все продукты вместе", "weight": 2229 }
+      ],
+      "verifyButtonText": "Проверить",
+      "hiddenContentText": "Напишите мне я вам вышлю номер. Следуйте этим шагам, чтобы приготовить блюдо:",
+      "tableHeaders": {
+        "product": "Продукт",
+        "cookingTechnology": "Технология приготовления",
+        "weight": "Вес (г)"
+      },
+      "pageTitle": "Мои Рецепты"
+    },
+    {
+      "id": 2,
+      "title": "Острая Ролл с Туной",
+      "description": "Вкусный рецепт острого ролла с тунцом для любителей суши.",
+      "date": "2023-10-02",
+      "image": "/000015.jpg",
+      "correctOtp": "654321",
+      "content": [
+        "Шаг 1: Приготовьте рис для суши.",
+        "Шаг 2: Смешайте тунца с острым майонезом.",
+        "Шаг 3: Заверните роллы с нори и рисом.",
+        "Шаг 4: Нарежьте и подавайте с соевым соусом."
+      ],
+      "ingredients": [
+        { "product": "Рис для суши", "cookingTechnology": "Сварить и приправить", "weight": 500 },
+        { "product": "Тунец", "cookingTechnology": "Нарезать и смешать с острым майонезом", "weight": 200 },
+        { "product": "Нори", "cookingTechnology": "Использовать как есть", "weight": 10 },
+        { "product": "Острый Майонез", "cookingTechnology": "Смешать с тунцом", "weight": 50 },
+        { "product": "Соевый Соус", "cookingTechnology": "Подавать как соус", "weight": 30 },
+        { "product": "Общий вес", "cookingTechnology": "Все продукты вместе", "weight": 790 }
+      ],
+      "verifyButtonText": "Проверить",
+      "hiddenContentText": "Вот остальная часть рецепта, которая была скрыта ранее. Следуйте этим шагам, чтобы приготовить блюдо:",
+      "tableHeaders": {
+        "product": "Продукт",
+        "cookingTechnology": "Технология приготовления",
+        "weight": "Вес (г)"
+      },
+      "pageTitle": "Мои Рецепты"
+    }
+  ]
+}

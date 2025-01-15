@@ -1,0 +1,66 @@
+{
+  "recipes": [
+    {
+      "id": 1,
+      "title": "Autorski przepis na Guacamole. Opracowany przepis na guacamole, idealny do ryb i owoców morza",
+      "description": "Napisz do mnie, a wyślę ci numer. Postępuj zgodnie z tymi krokami, aby przygotować danie:",
+      "date": "2023-10-01",
+      "image": "/guacamoli.jpg",
+      "correctOtp": "123456",
+      "content": [
+        "Krok 1: Przygotuj składniki.",
+        "Krok 2: Wymieszaj składniki razem.",
+        "Krok 3: Podawaj z rybami i owocami morza lub jako dodatek."
+      ],
+      "ingredients": [
+        { "product": "Miąższ awokado", "cookingTechnology": "Wydrąż i zetrzyj", "weight": 2000 },
+        { "product": "Sok z limonki", "cookingTechnology": "Świeżo wyciśnięty", "weight": 40 },
+        { "product": "Sól Maldon", "cookingTechnology": "Dodaj do smaku", "weight": 20 },
+        { "product": "Sok z yuzu", "cookingTechnology": "Dodaj dla cytrusowego smaku", "weight": 100 },
+        { "product": "Liście kolendry", "cookingTechnology": "Drobno posiekane", "weight": 40 },
+        { "product": "Czosnek", "cookingTechnology": "Drobno starty", "weight": 60 },
+        { "product": "Czerwona papryczka chili", "cookingTechnology": "Drobno posiekana", "weight": 30 },
+        { "product": "Pieprz japoński", "cookingTechnology": "Dodaj szczyptę", "weight": 4 },
+        { "product": "Całkowita waga", "cookingTechnology": "Wszystkie produkty razem", "weight": 2229 }
+      ],
+      "verifyButtonText": "Zweryfikuj",
+      "hiddenContentText": "Napisz do mnie, a wyślę ci numer. Postępuj zgodnie z tymi krokami, aby przygotować danie:",
+      "tableHeaders": {
+        "product": "Produkt",
+        "cookingTechnology": "Technologia gotowania",
+        "weight": "Waga (g)"
+      },
+      "pageTitle": "Moje Przepisy"
+    },
+    {
+      "id": 2,
+      "title": "Ostry Tuńczyk Roll",
+      "description": "Pyszny przepis na ostry tuńczyk roll dla miłośników sushi.",
+      "date": "2023-10-02",
+      "image": "/000015.jpg",
+      "correctOtp": "654321",
+      "content": [
+        "Krok 1: Przygotuj ryż do sushi.",
+        "Krok 2: Wymieszaj tuńczyka z ostrym majonezem.",
+        "Krok 3: Zwiń sushi z nori i ryżem.",
+        "Krok 4: Pokrój i podawaj z sosem sojowym."
+      ],
+      "ingredients": [
+        { "product": "Ryż do sushi", "cookingTechnology": "Ugotuj i przypraw", "weight": 500 },
+        { "product": "Tuńczyk", "cookingTechnology": "Pokrój i wymieszaj z ostrym majonezem", "weight": 200 },
+        { "product": "Nori", "cookingTechnology": "Użyj jak jest", "weight": 10 },
+        { "product": "Ostry Majonez", "cookingTechnology": "Wymieszaj z tuńczykiem", "weight": 50 },
+        { "product": "Sos Sojowy", "cookingTechnology": "Podawaj jako sos", "weight": 30 },
+        { "product": "Całkowita waga", "cookingTechnology": "Wszystkie produkty razem", "weight": 790 }
+      ],
+      "verifyButtonText": "Zweryfikuj",
+      "hiddenContentText": "Oto reszta przepisu, która była wcześniej ukryta. Postępuj zgodnie z tymi krokami, aby przygotować danie:",
+      "tableHeaders": {
+        "product": "Produkt",
+        "cookingTechnology": "Technologia gotowania",
+        "weight": "Waga (g)"
+      },
+      "pageTitle": "Moje Przepisy"
+    }
+  ]
+}

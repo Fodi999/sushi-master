@@ -1,0 +1,15 @@
+{
+  "title": "Mistrz Sushi - Strona 2",
+  "header": "Witamy na stronie 2",
+  "about": "O mnie: Jestem profesjonalnym kucharzem sushi z ponad 20-letnim doświadczeniem. Pracowałem w różnych krajach i poznałem wiele technik kulinarnych.",
+  "images": [
+    { "image": "/00029.jpg", "title": "Obraz 1" },
+    { "image": "/00030.jpg", "title": "Obraz 2" },
+    { "image": "/00031.jpg", "title": "Obraz 3" }
+  ],
+  "links": [
+    { "href": "/", "label": " Główna" },
+    { "href": "/page2", "label": "Strona 2" },
+    { "href": "/page3", "label": "Strona 3" }
+  ]
+}

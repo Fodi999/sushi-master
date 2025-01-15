@@ -8,8 +8,36 @@ import Footer from '../../components/Footer'; // Импортируем комп
 import SideButtons from '../../components/ui/SiteButtons'; // Импортируем компонент SideButtons
 import { Accordion, AccordionItem, AccordionTrigger, AccordionContent } from '@/components/ui/accordion'; // Импортируем компоненты Accordion
 
+interface Blog {
+  id: number;
+  title: string;
+  content: string;
+  date: string;
+  image: string;
+}
+
+interface Button {
+  href: string;
+  label: string;
+}
+
+interface BlogsData {
+  blogs: Blog[];
+  buttons: Button[];
+}
+
 const BlogPage = () => {
   const [isDarkMode, setIsDarkMode] = useState(false);
+  const [language, setLanguage] = useState('en');
+  const [currentData, setCurrentData] = useState<BlogsData | null>(null);
+  const [buttons, setButtons] = useState<{
+    home: string;
+    blog: string;
+    language: string;
+    myRecipes: string;
+    lightMode: string;
+    darkMode: string;
+  } | null>(null);
 
   useEffect(() => {
     const savedTheme = localStorage.getItem('theme');
@@ -20,10 +48,32 @@ const BlogPage = () => {
       setIsDarkMode(false);
       document.documentElement.classList.remove('dark');
     }
+
+    const savedLanguage = localStorage.getItem('language');
+    if (savedLanguage) {
+      setLanguage(savedLanguage);
+    }
+
+    loadLanguageData(savedLanguage || 'en');
+    loadButtonsData(savedLanguage || 'en');
   }, []);
 
+  const loadLanguageData = async (lang: string) => {
+    const data = await import(`../../data/${lang}/blogs.json`);
+    setCurrentData(data.default);
+  };
+
+  const loadButtonsData = async (lang: string) => {
+    const data = await import(`../../data/${lang}/buttons.json`);
+    setButtons(data.default);
+  };
+
   const toggleLanguage = () => {
-    // Логика переключения языка
+    const newLanguage = language === 'en' ? 'pl' : language === 'pl' ? 'ru' : 'en';
+    setLanguage(newLanguage);
+    localStorage.setItem('language', newLanguage);
+    loadLanguageData(newLanguage);
+    loadButtonsData(newLanguage);
   };
 
   const toggleRecipes = () => {
@@ -42,37 +92,9 @@ const BlogPage = () => {
     }
   };
 
-  const buttons = {
-    home: 'Home',
-    blog: 'Blog',
-    language: 'Language',
-    myRecipes: 'My Recipes',
-    lightMode: 'Light Mode',
-    darkMode: 'Dark Mode',
-  };
-
-  const blogs = [
-    {
-      title: 'Blog Post 1',
-      content: `
-        <ul class="list-disc pl-5">
-          <li><strong>This blog is written for those who are ready to discover delicious combinations of flavors.</strong></li>
-          <li>I want to tell and teach you how to cook new dishes that I invent and cook in order to surprise you, and share with you ideas and flavors.</li>
-          <li>For every cook, the opportunity to create from what is at hand is always amazing and wonderful. Strict recipes limit creativity. Until recently, trial and error was the only way to find out which products will go well together.</li>
-          <li>And decorating the family table with your creation is double the pleasure. Something new will always be a joy for your loved ones and friends. And no matter what you get as a result, you can be firmly sure of one thing: it will always be tasty and healthy.</li>
-          <li>As in any business, the ability to handle equipment and knowledge of the technological process are also important here. Cooking is no different from other crafts: your tools can be bare hands, and your utensils can be products, but it is also important to know how they should act and interact with other components.</li>
-          <li>I will tell you what products I work with and what benefits they bring to us. In order not to start from scratch, you can take these recipes as a basis and create new culinary masterpieces.</li>
-          <li>Are you an experienced cook or a beginner? Whoever you are, I hope this Blog will help you to reveal your talents.</li>
-          <li>Add a pinch of taste science to your dish of knowledge! Let this Blog open up a world of new gastronomic Tastes to you.</li>
-        </ul>
-      `,
-      date: '2023-10-01',
-      image: '/00031.jpg'
-    },
-    { title: 'Blog Post 2', content: 'Content of blog post 2', date: '2023-10-02', image: '/000012.jpg' },
-    { title: 'Blog Post 3', content: 'Content of blog post 3', date: '2023-10-03', image: '/000012.jpg' },
-    // Добавьте остальные блоги
-  ];
+  if (!currentData || !buttons) {
+    return <div>Loading...</div>;
+  }
 
   return (
     <div className="bg-cover bg-center min-h-screen flex flex-col dark:bg-black dark:text-white">
@@ -100,14 +122,14 @@ const BlogPage = () => {
             </h1>
             <div className='mt-8 space-y-8'>
               <Accordion type="single" collapsible>
-                {blogs.map((blog, index) => (
-                  <AccordionItem key={index} value={`item-${index}`}>
+                {currentData.blogs.map((blog) => (
+                  <AccordionItem key={blog.id} value={`item-${blog.id}`}>
                     <AccordionTrigger>
                       <div className="flex justify-between items-center w-full">
                         <h2 className='text-2xl font-bold'>{blog.title}</h2>
                         <span className='flex items-center'>
                           <p className='text-gray-500 dark:text-gray-400 mr-4'>{blog.date}</p>
-                          <Image src={blog.image} alt={blog.title} width={100} height={75} className="rounded-lg shadow-md ml-4" />
+                          <Image src={blog.image} alt={blog.title} width={100} height={75} className="rounded-lg shadow-md ml-4" style={{ width: 'auto', height: 'auto' }} priority />
                         </span>
                       </div>
                     </AccordionTrigger>
@@ -121,13 +143,16 @@ const BlogPage = () => {
           </div>
         </main>
         <div className="flex space-x-4 mt-8">
-          <Link href="/" className="px-4 py-2 rounded-full shadow-lg transition-all duration-300 text-sm font-semibold tracking-wide bg-blue-500 text-white hover:bg-blue-700">
-            Home
+          <Link href="/" className="px-4 py-2 rounded-full shadow-lg transition-all duration-300 text-sm font-semibold tracking-wide"
+            style={{ backgroundColor: 'var(--button-bg)', color: 'var(--button-text)', textTransform: 'uppercase', opacity: 0.7 }}>
+            Page 1
           </Link>
-          <Link href="/page2" className="px-4 py-2 rounded-full shadow-lg transition-all duration-300 text-sm font-semibold tracking-wide bg-blue-500 text-white hover:bg-blue-700">
+          <Link href="/page2" className="px-4 py-2 rounded-full shadow-lg transition-all duration-300 text-sm font-semibold tracking-wide"
+            style={{ backgroundColor: 'var(--button-bg)', color: 'var(--button-text)', textTransform: 'uppercase', opacity: 0.7 }}>
             Page 2
           </Link>
-          <Link href="/page3" className="px-4 py-2 rounded-full shadow-lg transition-all duration-300 text-sm font-semibold tracking-wide bg-blue-500 text-white hover:bg-blue-700">
+          <Link href="/page3" className="px-4 py-2 rounded-full shadow-lg transition-all duration-300 text-sm font-semibold tracking-wide"
+            style={{ backgroundColor: 'var(--button-bg)', color: 'var(--button-text)', textTransform: 'uppercase', opacity: 0.7 }}>
             Page 3
           </Link>
         </div>

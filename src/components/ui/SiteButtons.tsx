@@ -4,6 +4,7 @@ import { Button } from './button'; // Импортируем компонент 
 
 interface SideButtonsProps {
   buttons: {
+    home: string;
     blog: string;
     language: string;
     myRecipes: string;
@@ -17,6 +18,10 @@ interface SideButtonsProps {
 }
 
 const SideButtons: React.FC<SideButtonsProps> = ({ buttons, toggleLanguage, toggleRecipes, toggleTheme, isDarkMode }) => {
+  if (!buttons) {
+    return null; // Возвращаем null, если buttons не определен
+  }
+
   return (
     <div className="hidden md:flex fixed left-4 top-1/2 transform -translate-y-1/2 flex-col space-y-2 z-50">
       <Link href="/blog">

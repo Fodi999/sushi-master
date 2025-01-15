@@ -1,0 +1,30 @@
+{
+    "blogs": [
+      {
+        "id": 1,
+        "title": "Blog Post 1",
+        "content": "<ul class=\"list-disc pl-5\"><li><strong>This blog is written for those who are ready to discover delicious combinations of flavors.</strong></li><li>I want to tell and teach you how to cook new dishes that I invent and cook in order to surprise you, and share with you ideas and flavors.</li><li>For every cook, the opportunity to create from what is at hand is always amazing and wonderful. Strict recipes limit creativity. Until recently, trial and error was the only way to find out which products will go well together.</li><li>And decorating the family table with your creation is double the pleasure. Something new will always be a joy for your loved ones and friends. And no matter what you get as a result, you can be firmly sure of one thing: it will always be tasty and healthy.</li><li>As in any business, the ability to handle equipment and knowledge of the technological process are also important here. Cooking is no different from other crafts: your tools can be bare hands, and your utensils can be products, but it is also important to know how they should act and interact with other components.</li><li>I will tell you what products I work with and what benefits they bring to us. In order not to start from scratch, you can take these recipes as a basis and create new culinary masterpieces.</li><li>Are you an experienced cook or a beginner? Whoever you are, I hope this Blog will help you to reveal your talents.</li><li>Add a pinch of taste science to your dish of knowledge! Let this Blog open up a world of new gastronomic Tastes to you.</li></ul>",
+        "date": "2023-10-01",
+        "image": "/00031.jpg"
+      },
+      {
+        "id": 2,
+        "title": "Blog Post 2",
+        "content": "Content of blog post 2",
+        "date": "2023-10-02",
+        "image": "/000012.jpg"
+      },
+      {
+        "id": 3,
+        "title": "Blog Post 3",
+        "content": "Content of blog post 3",
+        "date": "2023-10-03",
+        "image": "/000012.jpg"
+      }
+    ],
+    "buttons": [
+      { "href": "/", "label": "Home" },
+      { "href": "/page2", "label": "Page 2" },
+      { "href": "/page3", "label": "Page 3" }
+    ]
+  }
